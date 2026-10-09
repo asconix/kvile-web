@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en" data-theme="natt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kvile: color that lets your eyes rest ...</title>
+<meta name="author" content="Christoph Pilka">
+<meta name="copyright" content="Copyright 2026 Christoph Pilka">
+<meta name="description" content="Kvile is a calm, perceptually balanced theme for VS Code and your terminal. Four variants, designed in OKLCH, checked for contrast and colorblind safety.">
+<meta name="theme-color" content="#0d151b">
+<meta property="og:title" content="Kvile: color that lets your eyes rest">
+<meta property="og:description" content="A calm, perceptually balanced theme for VS Code and terminals. Four variants, open palette tokens.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2032%2032'%3E%3Crect%20width%3D'32'%20height%3D'32'%20rx%3D'8'%20fill%3D'%230d151b'%2F%3E%3Ccircle%20cx%3D'16'%20cy%3D'16'%20r%3D'8'%20fill%3D'%23bdb1fe'%2F%3E%3Ccircle%20cx%3D'19.5'%20cy%3D'13'%20r%3D'7'%20fill%3D'%230d151b'%2F%3E%3C%2Fsvg%3E">
+<script>
+(function(){var r=document.documentElement;r.className+=' js';var t='natt';
+try{var s=localStorage.getItem('kvile-theme');if(s)t=s;else if(window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches)t='dag';}catch(e){}
+if(['natt','skumring','dag','kontrast'].indexOf(t)<0)t='natt';r.setAttribute('data-theme',t);})();
+</script>
+<style>
+[data-theme="natt"]{color-scheme:dark;--bg:#0d151b;--surface:#11181f;--raised:#181f26;--border:#22292f;--selection:#192d41;--fg:#d1d8df;--muted:#87929c;--comment:#6e838f;--keyword:#bdb1fe;--string:#85c38f;--function:#57a3f7;--type:#01dfd5;--number:#e29e2c;--constant:#cdc94b;--special:#ca87b4;--error:#eb7b5f}
+[data-theme="skumring"]{color-scheme:dark;--bg:#1a232b;--surface:#1d262d;--raised:#232c33;--border:#2c343c;--selection:#283c51;--fg:#bec5cb;--muted:#85919b;--comment:#687d89;--keyword:#ac8cb9;--string:#3dc2a0;--function:#5d9de5;--type:#46cef3;--number:#c88c3b;--constant:#d0ba53;--special:#f49bd0;--error:#f18c7e}
+[data-theme="dag"]{color-scheme:light;--bg:#f0f8ff;--surface:#ecf3f9;--raised:#e2e9ef;--border:#d5dce2;--selection:#c0d9f3;--fg:#292f34;--muted:#58626c;--comment:#5d727d;--keyword:#683f9f;--string:#477d3e;--function:#0a73cb;--type:#076767;--number:#b75001;--constant:#6c4e00;--special:#935891;--error:#8f3e48}
+[data-theme="kontrast"]{color-scheme:dark;--bg:#050a0f;--surface:#070e13;--raised:#0f151b;--border:#1a2126;--selection:#0d2034;--fg:#ebf3fa;--muted:#a9b5c0;--comment:#8aa0ac;--keyword:#a7afff;--string:#57cba3;--function:#a8d8ff;--type:#1ff5ce;--number:#efbb70;--constant:#dfde4f;--special:#e294d5;--error:#fe8f7b}
+html[data-theme="natt"] [data-for="natt"]{display:block}
+html[data-theme="skumring"] [data-for="skumring"]{display:block}
+html[data-theme="dag"] [data-for="dag"]{display:block}
+html[data-theme="kontrast"] [data-for="kontrast"]{display:block}
+:root{--font:"Inter Variable","Inter",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--mono:"JetBrains Mono","SF Mono",ui-monospace,Menlo,Consolas,monospace;--maxw:1180px;--ease:cubic-bezier(.2,.7,.2,1)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px;background:var(--bg);transition:background .5s var(--ease)}
+body{margin:0;font-family:var(--font);color:var(--fg);line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;transition:background .5s var(--ease),color .5s var(--ease);overflow-x:clip}
+[data-for]{display:none}
+a{color:inherit}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:12px;top:-60px;background:var(--function);color:var(--bg);padding:10px 16px;border-radius:10px;z-index:100;text-decoration:none;font-weight:600}
+.skip:focus{top:12px}
+:focus-visible{outline:2px solid var(--function);outline-offset:3px;border-radius:6px}
+.aurora{position:fixed;inset:0;z-index:-2;overflow:hidden;pointer-events:none}
+.aurora i{position:absolute;border-radius:50%;filter:blur(120px);opacity:.15;width:62vmax;height:62vmax;animation:drift 32s ease-in-out infinite alternate;transition:background .8s}
+.aurora i:nth-child(1){background:var(--keyword);left:-18vmax;top:-22vmax}
+.aurora i:nth-child(2){background:var(--function);right:-22vmax;top:-10vmax;animation-delay:-8s;animation-duration:38s}
+.aurora i:nth-child(3){background:var(--type);left:12vmax;top:46vh;animation-delay:-16s;opacity:.10}
+.aurora i:nth-child(4){background:var(--string);right:-14vmax;top:62vh;animation-delay:-24s;opacity:.07;animation-duration:44s}
+html[data-theme="dag"] .aurora i{opacity:.14}
+@keyframes drift{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(6vmax,4vmax,0) scale(1.15)}}
+.grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'200'%20height%3D'200'%3E%3Cfilter%20id%3D'n'%3E%3CfeTurbulence%20type%3D'fractalNoise'%20baseFrequency%3D'.9'%20numOctaves%3D'2'%20stitchTiles%3D'stitch'%2F%3E%3CfeColorMatrix%20values%3D'0%200%200%200%201%20%200%200%200%200%201%20%200%200%200%200%201%20%200%200%200%20.55%200'%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D'100%25'%20height%3D'100%25'%20filter%3D'url(%23n)'%2F%3E%3C%2Fsvg%3E");mix-blend-mode:overlay}
+html[data-theme="dag"] .grain{opacity:.05;mix-blend-mode:multiply}
+/* nav */
+.nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:20px;padding:12px max(16px,calc((100vw - var(--maxw))/2));backdrop-filter:blur(16px) saturate(1.5);-webkit-backdrop-filter:blur(16px) saturate(1.5);background:color-mix(in oklab,var(--bg) 62%,transparent);border-bottom:1px solid color-mix(in oklab,var(--fg) 8%,transparent)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.02em;text-decoration:none;font-size:1.15rem}
+.links{display:flex;gap:6px;margin-left:12px}
+.links a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:999px;font-size:.92rem;transition:color .2s,background .2s}
+.links a:hover{color:var(--fg);background:color-mix(in oklab,var(--fg) 8%,transparent)}
+.switch{margin-left:auto;display:flex;gap:2px;padding:4px;border-radius:999px;background:color-mix(in oklab,var(--fg) 7%,transparent);border:1px solid color-mix(in oklab,var(--fg) 8%,transparent)}
+.switch button{all:unset;cursor:pointer;display:flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;font-size:.85rem;color:var(--muted);transition:background .25s var(--ease),color .25s}
+.switch button:hover{color:var(--fg)}
+.switch button[aria-pressed="true"]{background:var(--selection);color:var(--fg);box-shadow:0 1px 0 color-mix(in oklab,var(--fg) 12%,transparent) inset}
+.switch button:focus-visible{outline:2px solid var(--function);outline-offset:2px}
+.dot{width:14px;height:14px;border-radius:50%;background:linear-gradient(135deg,var(--b) 50%,var(--a) 50%);box-shadow:0 0 0 1px color-mix(in oklab,var(--fg) 25%,transparent)}
+.gh{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;color:var(--muted);transition:color .2s,background .2s}
+.gh:hover{color:var(--fg);background:color-mix(in oklab,var(--fg) 8%,transparent)}
+main{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+section{padding:96px 0 0}
+/* hero */
+.hero{padding-top:88px;text-align:center;position:relative}
+.pill{display:inline-flex;align-items:center;gap:10px;margin:0 0 28px;padding:7px 16px;border-radius:999px;font-size:.82rem;color:var(--muted);background:color-mix(in oklab,var(--fg) 6%,transparent);border:1px solid color-mix(in oklab,var(--fg) 10%,transparent)}
+.pulse{width:8px;height:8px;border-radius:50%;background:var(--string);box-shadow:0 0 0 0 color-mix(in oklab,var(--string) 60%,transparent);animation:pulse 2.4s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px transparent}100%{box-shadow:0 0 0 0 transparent}}
+h1{font-size:clamp(2.7rem,8.2vw,6.6rem);line-height:.98;letter-spacing:-.05em;font-weight:720;margin:0 auto;max-width:14ch}
+.grad{background:linear-gradient(95deg,var(--keyword),var(--function) 45%,var(--type) 75%,var(--string));-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.04em}
+.lead{max-width:58ch;margin:28px auto 0;font-size:clamp(1.05rem,2vw,1.25rem);color:var(--muted)}
+.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:36px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:999px;font-weight:600;font-size:.98rem;text-decoration:none;border:1px solid transparent;transition:transform .25s var(--ease),box-shadow .25s var(--ease),background .25s}
+.btn.primary{background:var(--function);color:var(--bg);box-shadow:0 10px 34px -10px color-mix(in oklab,var(--function) 70%,transparent)}
+.btn.primary:hover{transform:translateY(-2px);box-shadow:0 16px 40px -10px color-mix(in oklab,var(--function) 80%,transparent)}
+.btn.ghost{border-color:color-mix(in oklab,var(--fg) 18%,transparent);color:var(--fg)}
+.btn.ghost:hover{background:color-mix(in oklab,var(--fg) 8%,transparent);transform:translateY(-2px)}
+.btn.sm{padding:8px 16px;font-size:.85rem}
+.stage{position:relative;margin:28px auto 0;max-width:880px;text-align:left}
+.try{margin:60px auto 0;display:flex;flex-direction:column;align-items:center;gap:14px}
+.try-label{font:600 .78rem var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--function)}
+.try-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.tbtn{all:unset;cursor:pointer;display:flex;align-items:center;gap:12px;padding:9px 18px 9px 9px;border-radius:16px;background:color-mix(in oklab,var(--fg) 6%,transparent);border:1px solid color-mix(in oklab,var(--fg) 12%,transparent);transition:transform .25s var(--ease),border-color .25s,background .25s,box-shadow .25s}
+.tbtn:hover{transform:translateY(-2px);background:color-mix(in oklab,var(--fg) 10%,transparent)}
+.tbtn:focus-visible{outline:2px solid var(--function);outline-offset:3px}
+.tbtn[aria-pressed="true"]{border-color:var(--function);background:color-mix(in oklab,var(--function) 13%,transparent);box-shadow:0 0 0 3px color-mix(in oklab,var(--function) 22%,transparent)}
+.mock{display:flex;flex-direction:column;justify-content:center;gap:4px;width:46px;height:38px;padding:0 8px;border-radius:9px;background:var(--b);box-shadow:inset 0 0 0 1px color-mix(in oklab,var(--fg) 22%,transparent)}
+.mock i{display:block;height:4px;border-radius:2px}
+.mock i:nth-child(1){width:80%;background:var(--k)}.mock i:nth-child(2){width:55%;background:var(--fn)}.mock i:nth-child(3){width:68%;background:var(--st)}
+.tn{display:flex;flex-direction:column;line-height:1.25;text-align:left}
+.tn b{font-size:.92rem;font-weight:600;color:var(--fg)}
+.tn small{font-size:.74rem;color:var(--muted)}
+@media (max-width:560px){.try-row{display:grid;grid-template-columns:1fr 1fr;width:100%}.tbtn{padding-right:10px}}
+.window{border-radius:18px;background:color-mix(in oklab,var(--surface) 88%,transparent);backdrop-filter:blur(10px);border:1px solid color-mix(in oklab,var(--fg) 12%,transparent);box-shadow:0 50px 90px -40px rgba(0,0,0,.65),0 0 0 1px color-mix(in oklab,var(--bg) 70%,transparent);overflow:hidden;transition:background .5s,border-color .5s}
+html[data-theme="dag"] .window{box-shadow:0 40px 80px -40px rgba(30,50,80,.35)}
+.chrome{display:flex;align-items:center;gap:7px;padding:12px 14px;background:var(--raised)}
+.chrome i{width:11px;height:11px;border-radius:50%;display:block;opacity:.9}
+.tab{margin-left:8px;font-size:.78rem;color:var(--muted);padding:3px 10px;border-radius:6px}
+.tab.on{background:var(--surface);color:var(--fg)}
+.code{display:flex;padding:18px 0;overflow-x:auto;font:.86rem/1.75 var(--mono)}
+pre{margin:0;font:inherit}
+.gut{padding:0 16px 0 20px;color:var(--comment);text-align:right;user-select:none}
+.src{padding-right:24px;color:var(--fg)}
+.k{color:var(--keyword)}.s{color:var(--string)}.f{color:var(--function)}.t{color:var(--type)}.n{color:var(--number)}.c{color:var(--constant)}.x{color:var(--special)}.m{color:var(--comment);font-style:italic}
+.caret{display:inline-block;width:.55em;height:1.15em;vertical-align:text-bottom;background:var(--function);margin-left:2px;animation:blink 1.1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.status{display:flex;gap:18px;padding:7px 16px;font-size:.74rem;color:var(--muted);background:var(--raised);border-top:1px solid color-mix(in oklab,var(--fg) 8%,transparent)}
+.status .grow{flex:1}
+.term{position:absolute;right:-28px;bottom:-56px;width:min(400px,62%)}
+.termbody{padding:16px 18px 18px;font:.8rem/1.75 var(--mono);color:var(--fg);overflow-x:auto}
+@media (max-width:900px){.term{position:relative;right:auto;bottom:auto;width:100%;margin-top:16px}}
+/* sections */
+.head{max-width:680px;margin-bottom:44px}
+.eyebrow{margin:0 0 12px;font:600 .78rem var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--function)}
+h2{font-size:clamp(2rem,4.6vw,3.3rem);line-height:1.05;letter-spacing:-.04em;margin:0;font-weight:700}
+.sub{margin:16px 0 0;color:var(--muted);font-size:1.08rem}
+h3{margin:0 0 10px;font-size:1.25rem;letter-spacing:-.02em}
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.card{position:relative;overflow:hidden;padding:28px;border-radius:28px;background:linear-gradient(165deg,color-mix(in oklab,var(--surface) 90%,var(--fg) 5%),var(--surface));border:1px solid color-mix(in oklab,var(--fg) 10%,transparent);transition:background .5s,border-color .3s,transform .35s var(--ease)}
+.card::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .35s;background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),color-mix(in oklab,var(--function) 16%,transparent),transparent 60%)}
+.card:hover::before{opacity:1}
+.card p{margin:0;color:var(--muted)}
+.s7{grid-column:span 7}.s5{grid-column:span 5}.s4{grid-column:span 4}
+@media (max-width:900px){.s7,.s5,.s4{grid-column:span 12}}
+.big{font-size:clamp(3rem,7vw,4.6rem);font-weight:720;letter-spacing:-.05em;line-height:1;margin:6px 0 14px;background:linear-gradient(95deg,var(--function),var(--type));-webkit-background-clip:text;background-clip:text;color:transparent}
+.big small{font-size:.45em;letter-spacing:0}
+.orbs{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}
+.orbs i{width:44px;height:44px;border-radius:50%;background:var(--c);box-shadow:0 8px 24px -8px var(--c);transition:transform .3s var(--ease)}
+.orbs i:hover{transform:translateY(-4px) scale(1.08)}
+.variants{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:22px}
+@media (max-width:560px){.variants{grid-template-columns:repeat(2,1fr)}}
+.vcard{all:unset;cursor:pointer;position:relative;display:flex;flex-direction:column;gap:5px;padding:12px;border-radius:14px;background:var(--b);border:1px solid color-mix(in oklab,var(--f) 18%,transparent);transition:transform .3s var(--ease),box-shadow .3s}
+.vcard:hover{transform:translateY(-3px);box-shadow:0 14px 30px -14px rgba(0,0,0,.5)}
+.vcard:focus-visible{outline:2px solid var(--function);outline-offset:3px}
+.vcard i{display:block;height:5px;border-radius:3px}
+.vcard i:nth-child(1){width:70%;background:var(--k)}.vcard i:nth-child(2){width:48%;background:var(--fn)}.vcard i:nth-child(3){width:62%;background:var(--st)}.vcard i:nth-child(4){width:36%;background:var(--cm)}
+.vcard b{margin-top:6px;font-size:.78rem;color:var(--f);font-weight:600}
+.tags{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.tags li{padding:5px 12px;border-radius:999px;font-size:.8rem;color:var(--fg);background:color-mix(in oklab,var(--fg) 7%,transparent);border:1px solid color-mix(in oklab,var(--fg) 9%,transparent)}
+.link{display:inline-block;margin-top:16px;color:var(--function);text-decoration:none;font-weight:600}
+.link:hover{text-decoration:underline;text-underline-offset:4px}
+/* palette */
+.ramp{display:flex;height:56px;border-radius:16px;overflow:hidden;border:1px solid color-mix(in oklab,var(--fg) 10%,transparent)}
+.ramp button{all:unset;flex:1;cursor:pointer;transition:flex .3s var(--ease)}
+.ramp button:hover{flex:2.4}
+.ramp button:focus-visible{outline:2px solid var(--function);outline-offset:-3px}
+.grid8{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+@media (max-width:860px){.grid8{grid-template-columns:repeat(2,1fr)}}
+.sw{all:unset;cursor:pointer;display:grid;gap:3px;padding:14px;border-radius:20px;background:var(--surface);border:1px solid color-mix(in oklab,var(--fg) 9%,transparent);transition:transform .3s var(--ease),border-color .3s,background .5s}
+.sw:hover{transform:translateY(-3px);border-color:color-mix(in oklab,var(--c) 60%,transparent)}
+.sw:focus-visible{outline:2px solid var(--function);outline-offset:3px}
+.sw .chip{height:64px;border-radius:12px;background:var(--c);margin-bottom:8px;box-shadow:inset 0 0 0 1px color-mix(in oklab,var(--fg) 14%,transparent)}
+.sw .nm{font-weight:600;font-size:.95rem;text-transform:capitalize}
+.sw code{font:.8rem var(--mono);color:var(--muted)}
+.sw .sub2{font-size:.76rem;color:var(--comment)}
+.neutrals .sw .chip{height:40px}
+/* accessibility */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:900px){.two{grid-template-columns:1fr}}
+.mutedp{color:var(--muted);margin:0 0 20px}
+.legend{display:grid;grid-template-columns:repeat(8,1fr);gap:4px;margin:18px 0 6px 0;padding-left:0;font:.58rem var(--mono);color:var(--comment);text-transform:uppercase;letter-spacing:.02em}
+.legend span{overflow:hidden;text-overflow:clip;text-align:center}
+.cvdrow{margin-top:16px}
+.cvdlabel{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:6px}
+.cvdlabel small{color:var(--comment);font-size:.74rem}
+.chips{display:grid;grid-template-columns:repeat(8,1fr);gap:4px}
+.chips i{height:40px;border-radius:10px;display:block;box-shadow:inset 0 0 0 1px color-mix(in oklab,var(--fg) 12%,transparent)}
+.ctable{width:100%;border-collapse:collapse;font-size:.88rem}
+.ctable th,.ctable td{padding:8px 6px;text-align:left;border-bottom:1px solid color-mix(in oklab,var(--fg) 8%,transparent)}
+.ctable thead th{color:var(--comment);font-weight:500;font-size:.76rem;text-transform:uppercase;letter-spacing:.06em}
+.ctable tbody th{font-weight:500}
+.ctable tbody th::first-letter{text-transform:uppercase}
+.ctable td{font-family:var(--mono);color:var(--muted)}
+.ctable td.ok{color:var(--string)}.ctable td.no{color:var(--error)}
+/* install */
+.acc{display:grid;gap:10px;grid-template-columns:minmax(0,1fr)}
+details{border-radius:20px;background:var(--surface);border:1px solid color-mix(in oklab,var(--fg) 10%,transparent);transition:background .5s,border-color .3s}
+details[open]{border-color:color-mix(in oklab,var(--function) 45%,transparent)}
+summary{cursor:pointer;list-style:none;padding:18px 22px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-weight:400;font-size:1.4rem;color:var(--muted);transition:transform .3s var(--ease)}
+details[open] summary::after{transform:rotate(45deg)}
+details p{margin:0;padding:0 22px 20px;color:var(--muted);font-size:.92rem}
+.cmd{position:relative;margin:0 14px 12px;border-radius:14px;background:var(--bg);border:1px solid color-mix(in oklab,var(--fg) 8%,transparent)}
+.cmd pre{padding:16px 84px 16px 18px;overflow-x:auto;font:.84rem/1.7 var(--mono);color:var(--fg)}
+.copy-btn{all:unset;cursor:pointer;position:absolute;right:10px;top:10px;padding:5px 12px;border-radius:8px;font-size:.78rem;color:var(--muted);background:color-mix(in oklab,var(--fg) 8%,transparent)}
+.copy-btn:hover{color:var(--fg);background:color-mix(in oklab,var(--fg) 14%,transparent)}
+.copy-btn:focus-visible{outline:2px solid var(--function)}
+/* wallpapers */
+.walls{display:grid;grid-template-columns:1.9fr 1fr;gap:16px;align-items:start}
+@media (max-width:760px){.walls{grid-template-columns:1fr}}
+.wall{margin:0;border-radius:24px;overflow:hidden;background:var(--surface);border:1px solid color-mix(in oklab,var(--fg) 10%,transparent)}
+.wall img{display:block;width:100%;height:auto}
+.wall.tall{max-width:360px}
+.wall figcaption{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 16px;font-size:.82rem;color:var(--muted)}
+footer{max-width:var(--maxw);margin:120px auto 0;padding:40px 20px 64px;border-top:1px solid color-mix(in oklab,var(--fg) 8%,transparent);display:flex;flex-wrap:wrap;gap:16px 32px;justify-content:space-between;color:var(--muted);font-size:.9rem}
+footer b{color:var(--fg)}
+footer a{text-decoration:none}footer a:hover{color:var(--fg)}
+.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,24px);opacity:0;pointer-events:none;padding:10px 18px;border-radius:999px;background:var(--fg);color:var(--bg);font-size:.88rem;font-weight:600;transition:opacity .25s,transform .35s var(--ease);z-index:90}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+html.js .reveal{opacity:0;transform:translateY(20px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+html.js .reveal.in{opacity:1;transform:none}
+@media (max-width:1000px){.links{display:none}}
+@media (max-width:760px){.nav{gap:10px}.switch .lbl{display:none}.switch button{padding:6px 9px}section{padding-top:72px}.hero{padding-top:56px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}html.js .reveal{opacity:1;transform:none}}
+</style>
+<noscript><style>html.js .reveal{opacity:1;transform:none}</style></noscript>
+</head>
+<body id="top">
+<a class="skip" href="#main">Skip to content</a>
+<div class="aurora" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="nav">
+  <a class="brand" href="#top" aria-label="Kvile home"><svg class="logo" viewBox="0 0 32 32" width="24" height="24" aria-hidden="true"><defs><mask id="lm"><rect width="32" height="32" fill="#fff"/><circle cx="20.5" cy="12.5" r="8.5" fill="#000"/></mask></defs><circle cx="16" cy="16" r="10" fill="url(#g-lm)" mask="url(#lm)"/><defs><linearGradient id="g-lm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--keyword)"/><stop offset="1" stop-color="var(--function)"/></linearGradient></defs></svg><span>Kvile</span></a>
+  <nav aria-label="Sections" class="links"><a href="#features">Features</a><a href="#palette">Palette</a><a href="#accessibility">Accessibility</a><a href="#install">Install</a><a href="#wallpapers">Wallpapers</a></nav>
+  <div class="switch" role="group" aria-label="Color variant"><button type="button" data-theme-btn="natt" aria-pressed="false" aria-label="Kvile Natt"><span class="dot" style="--b:#0d151b;--a:#57a3f7"></span><span class="lbl">Natt</span></button><button type="button" data-theme-btn="skumring" aria-pressed="false" aria-label="Kvile Skumring"><span class="dot" style="--b:#1a232b;--a:#5d9de5"></span><span class="lbl">Skumring</span></button><button type="button" data-theme-btn="dag" aria-pressed="false" aria-label="Kvile Dag"><span class="dot" style="--b:#f0f8ff;--a:#0a73cb"></span><span class="lbl">Dag</span></button><button type="button" data-theme-btn="kontrast" aria-pressed="false" aria-label="Kvile Kontrast"><span class="dot" style="--b:#050a0f;--a:#a8d8ff"></span><span class="lbl">Kontrast</span></button></div>
+  <a class="gh" href="https://github.com/asconix/kvile" rel="noopener" aria-label="Kvile on GitHub"><svg viewBox="0 0 16 16" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.5 7.5 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+</header>
+<main id="main">
+
+<section class="hero" aria-labelledby="h1">
+  <p class="pill reveal"><span class="pulse" aria-hidden="true"></span>Four variants &middot; open palette tokens &middot; VS Code and terminals</p>
+  <h1 id="h1" class="reveal">Color that lets your eyes <span class="grad">rest</span>.</h1>
+  <p class="lead reveal">Kvile is a calm, perceptually balanced theme for your editor and terminal. Designed in OKLCH, checked for contrast and colorblind safety, generated from a single set of tokens.</p>
+  <div class="cta reveal">
+    <a class="btn primary" href="#install">Get Kvile</a>
+    <a class="btn ghost" href="https://github.com/asconix/kvile" rel="noopener">View on GitHub <span aria-hidden="true">&rarr;</span></a>
+  </div>
+  <div class="try reveal" role="group" aria-label="Try a variant">
+    <span class="try-label">Try it live</span>
+    <div class="try-row"><button type="button" class="tbtn" data-theme-btn="natt" aria-pressed="false" style="--b:#0d151b;--k:#bdb1fe;--fn:#57a3f7;--st:#85c38f;--cm:#6e838f"><span class="mock" aria-hidden="true"><i></i><i></i><i></i></span><span class="tn"><b>Natt</b><small>night</small></span></button><button type="button" class="tbtn" data-theme-btn="skumring" aria-pressed="false" style="--b:#1a232b;--k:#ac8cb9;--fn:#5d9de5;--st:#3dc2a0;--cm:#687d89"><span class="mock" aria-hidden="true"><i></i><i></i><i></i></span><span class="tn"><b>Skumring</b><small>dusk</small></span></button><button type="button" class="tbtn" data-theme-btn="dag" aria-pressed="false" style="--b:#f0f8ff;--k:#683f9f;--fn:#0a73cb;--st:#477d3e;--cm:#5d727d"><span class="mock" aria-hidden="true"><i></i><i></i><i></i></span><span class="tn"><b>Dag</b><small>day</small></span></button><button type="button" class="tbtn" data-theme-btn="kontrast" aria-pressed="false" style="--b:#050a0f;--k:#a7afff;--fn:#a8d8ff;--st:#57cba3;--cm:#8aa0ac"><span class="mock" aria-hidden="true"><i></i><i></i><i></i></span><span class="tn"><b>Kontrast</b><small>high contrast</small></span></button></div>
+  </div>
+  <div class="stage reveal">
+    <div class="window" role="img" aria-label="Code editor showing a TypeScript file in the current Kvile variant">
+      <div class="chrome"><i style="background:var(--error)"></i><i style="background:var(--constant)"></i><i style="background:var(--string)"></i>
+        <span class="tab on">schedule.ts</span><span class="tab">tokens.json</span></div>
+      <div class="code"><pre class="gut" aria-hidden="true">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14</pre><pre class="src"><span class="k">import</span> { <span class="f">createServer</span> } <span class="k">from</span> <span class="s">"node:http"</span>;
+
+<span class="k">type</span> <span class="t">Session</span> = { name: <span class="t">string</span>; hours: <span class="t">number</span> };
+
+<span class="m">// Calm by default, bright only where it matters.</span>
+<span class="k">const</span> <span class="c">MAX_HOURS</span> = <span class="n">8</span>;
+<span class="k">const</span> pattern = <span class="x">/^kvile-(\w+)$/i</span>;
+
+<span class="k">export function</span> <span class="f">schedule</span>(s: <span class="t">Session</span>): <span class="t">string</span> {
+  <span class="k">if</span> (s.hours &gt; <span class="c">MAX_HOURS</span>) {
+    <span class="k">throw new</span> <span class="f">Error</span>(<span class="s">"Take a break: "</span> + s.hours);
+  }
+  <span class="k">return</span> s.name.<span class="f">replace</span>(pattern, <span class="s">"$1"</span>);
+}<span class="caret"></span></pre></div>
+      <div class="status"><span>main</span><span>TypeScript</span><span class="grow"></span><span id="status-name">Kvile Natt</span></div>
+    </div>
+    <div class="window term" role="img" aria-label="Terminal output in the current Kvile variant">
+      <div class="chrome"><i style="background:var(--error)"></i><i style="background:var(--constant)"></i><i style="background:var(--string)"></i><span class="tab on">zsh</span></div>
+      <pre class="termbody"><span style="color:var(--function)">~/kvile</span> <span style="color:var(--comment)">on</span> <span style="color:var(--keyword)">main</span>
+<span style="color:var(--string)">&#10095;</span> node generate.mjs
+<span style="color:var(--string)">&#10003;</span> Kvile Natt      <span style="color:var(--comment)">contrast ok</span>
+<span style="color:var(--string)">&#10003;</span> Kvile Dag       <span style="color:var(--comment)">contrast ok</span>
+<span style="color:var(--constant)">!</span> <span style="color:var(--number)">1 hue</span> nudged for deuteranopia
+<span style="color:var(--string)">&#10095;</span> <span class="caret"></span></pre>
+    </div>
+  </div>
+</section>
+
+<section id="features" aria-labelledby="f-h">
+  <div class="head reveal"><p class="eyebrow">Why Kvile</p><h2 id="f-h">Quiet colors, built with math.</h2>
+  <p class="sub">Most themes are picked by eye and checked never. Kvile is generated, measured, and then tuned by eye.</p></div>
+  <div class="bento">
+    <article class="card s7 reveal">
+      <h3>Four variants, one system</h3>
+      <p>Night, dusk, day and high contrast share the same roles and the same checks. Pick one, the whole page follows.</p>
+      <div class="variants"><button class="vcard" type="button" data-theme-btn="natt" aria-label="Switch to Kvile Natt" style="--b:#0d151b;--s:#11181f;--f:#d1d8df;--k:#bdb1fe;--fn:#57a3f7;--st:#85c38f;--cm:#6e838f"><i></i><i></i><i></i><i></i><b>Natt</b></button><button class="vcard" type="button" data-theme-btn="skumring" aria-label="Switch to Kvile Skumring" style="--b:#1a232b;--s:#1d262d;--f:#bec5cb;--k:#ac8cb9;--fn:#5d9de5;--st:#3dc2a0;--cm:#687d89"><i></i><i></i><i></i><i></i><b>Skumring</b></button><button class="vcard" type="button" data-theme-btn="dag" aria-label="Switch to Kvile Dag" style="--b:#f0f8ff;--s:#ecf3f9;--f:#292f34;--k:#683f9f;--fn:#0a73cb;--st:#477d3e;--cm:#5d727d"><i></i><i></i><i></i><i></i><b>Dag</b></button><button class="vcard" type="button" data-theme-btn="kontrast" aria-label="Switch to Kvile Kontrast" style="--b:#050a0f;--s:#070e13;--f:#ebf3fa;--k:#a7afff;--fn:#a8d8ff;--st:#57cba3;--cm:#8aa0ac"><i></i><i></i><i></i><i></i><b>Kontrast</b></button></div>
+    </article>
+    <article class="card s5 reveal">
+      <h3>Contrast you can trust</h3>
+      <div class="big"><span data-stat="text">7.4</span><small>:1</small></div>
+      <p>Text on background in the current variant. Comments stay readable at <b data-stat="comment">4.6</b>:1 instead of fading away.</p>
+    </article>
+    <article class="card s5 reveal">
+      <h3>Safe for colorblind eyes</h3>
+      <div class="big"><span>&Delta;E &ge; 6</span></div>
+      <p>Every pair of syntax colors stays separable under deuteranopia, protanopia and tritanopia. The build fails if one slips.</p>
+    </article>
+    <article class="card s7 reveal">
+      <h3>Designed in OKLCH</h3>
+      <p>Accents are defined by perceptual lightness and chroma instead of hex guesses, so yellow does not shout over purple. Each hue is nudged only as far as it takes to stay distinct.</p>
+      <div class="orbs" aria-hidden="true"><i style="--c:var(--keyword)"></i><i style="--c:var(--string)"></i><i style="--c:var(--function)"></i><i style="--c:var(--type)"></i><i style="--c:var(--number)"></i><i style="--c:var(--constant)"></i><i style="--c:var(--special)"></i><i style="--c:var(--error)"></i></div>
+    </article>
+    <article class="card s4 reveal">
+      <h3>One source of truth</h3>
+      <p>Edit the tokens once, regenerate everything.</p>
+      <ul class="tags"><li>VS Code</li><li>Ghostty</li><li>Alacritty</li><li>kitty</li><li>WezTerm</li><li>iTerm2</li><li>Windows Terminal</li></ul>
+    </article>
+    <article class="card s4 reveal">
+      <h3>Wallpapers included</h3>
+      <p>Technical specimen sheets drawn from the real palette data, for desktop and phone.</p>
+      <a class="link" href="#wallpapers">See wallpapers <span aria-hidden="true">&rarr;</span></a>
+    </article>
+    <article class="card s4 reveal">
+      <h3>Open tokens</h3>
+      <p>Use the palette in your own apps as JSON or CSS variables.</p>
+      <a class="link" href="https://github.com/asconix/kvile/tree/main/dist" rel="noopener">tokens.json &amp; kvile.css <span aria-hidden="true">&rarr;</span></a>
+    </article>
+  </div>
+</section>
+
+<section id="palette" aria-labelledby="p-h">
+  <div class="head reveal"><p class="eyebrow">Palette</p><h2 id="p-h">Eight accents. Twelve neutrals.</h2>
+  <p class="sub">Click any swatch to copy its hex value. The page you are reading uses exactly these colors.</p></div>
+  <div class="reveal"><div data-for="natt">
+    <div class="ramp" role="list" aria-label="Neutral ramp"><button type="button" role="listitem" data-copy="#0d151b" style="background:#0d151b" aria-label="Copy neutral 0 #0d151b" title="n0 #0d151b"></button><button type="button" role="listitem" data-copy="#11181f" style="background:#11181f" aria-label="Copy neutral 1 #11181f" title="n1 #11181f"></button><button type="button" role="listitem" data-copy="#181f26" style="background:#181f26" aria-label="Copy neutral 2 #181f26" title="n2 #181f26"></button><button type="button" role="listitem" data-copy="#22292f" style="background:#22292f" aria-label="Copy neutral 3 #22292f" title="n3 #22292f"></button><button type="button" role="listitem" data-copy="#2e363c" style="background:#2e363c" aria-label="Copy neutral 4 #2e363c" title="n4 #2e363c"></button><button type="button" role="listitem" data-copy="#3e454b" style="background:#3e454b" aria-label="Copy neutral 5 #3e454b" title="n5 #3e454b"></button><button type="button" role="listitem" data-copy="#50575d" style="background:#50575d" aria-label="Copy neutral 6 #50575d" title="n6 #50575d"></button><button type="button" role="listitem" data-copy="#646b71" style="background:#646b71" aria-label="Copy neutral 7 #646b71" title="n7 #646b71"></button><button type="button" role="listitem" data-copy="#7c8288" style="background:#7c8288" aria-label="Copy neutral 8 #7c8288" title="n8 #7c8288"></button><button type="button" role="listitem" data-copy="#969ca2" style="background:#969ca2" aria-label="Copy neutral 9 #969ca2" title="n9 #969ca2"></button><button type="button" role="listitem" data-copy="#b3b9bf" style="background:#b3b9bf" aria-label="Copy neutral 10 #b3b9bf" title="n10 #b3b9bf"></button><button type="button" role="listitem" data-copy="#d2d8de" style="background:#d2d8de" aria-label="Copy neutral 11 #d2d8de" title="n11 #d2d8de"></button></div>
+    <div class="grid8"><button type="button" class="sw" data-copy="#bdb1fe" style="--c:#bdb1fe" aria-label="Copy keyword #bdb1fe"><span class="chip"></span><span class="nm">keyword</span><code>#bdb1fe</code><span class="sub2">keywords, tags</span></button><button type="button" class="sw" data-copy="#85c38f" style="--c:#85c38f" aria-label="Copy string #85c38f"><span class="chip"></span><span class="nm">string</span><code>#85c38f</code><span class="sub2">strings, success</span></button><button type="button" class="sw" data-copy="#57a3f7" style="--c:#57a3f7" aria-label="Copy function #57a3f7"><span class="chip"></span><span class="nm">function</span><code>#57a3f7</code><span class="sub2">functions, links, info</span></button><button type="button" class="sw" data-copy="#01dfd5" style="--c:#01dfd5" aria-label="Copy type #01dfd5"><span class="chip"></span><span class="nm">type</span><code>#01dfd5</code><span class="sub2">types, classes</span></button><button type="button" class="sw" data-copy="#e29e2c" style="--c:#e29e2c" aria-label="Copy number #e29e2c"><span class="chip"></span><span class="nm">number</span><code>#e29e2c</code><span class="sub2">numbers</span></button><button type="button" class="sw" data-copy="#cdc94b" style="--c:#cdc94b" aria-label="Copy constant #cdc94b"><span class="chip"></span><span class="nm">constant</span><code>#cdc94b</code><span class="sub2">constants, warnings</span></button><button type="button" class="sw" data-copy="#ca87b4" style="--c:#ca87b4" aria-label="Copy special #ca87b4"><span class="chip"></span><span class="nm">special</span><code>#ca87b4</code><span class="sub2">regex, escapes, decorators</span></button><button type="button" class="sw" data-copy="#eb7b5f" style="--c:#eb7b5f" aria-label="Copy error #eb7b5f"><span class="chip"></span><span class="nm">error</span><code>#eb7b5f</code><span class="sub2">errors</span></button></div>
+    <div class="grid8 neutrals"><button type="button" class="sw" data-copy="#0d151b" style="--c:#0d151b" aria-label="Copy bg #0d151b"><span class="chip"></span><span class="nm">bg</span><code>#0d151b</code></button><button type="button" class="sw" data-copy="#11181f" style="--c:#11181f" aria-label="Copy surface #11181f"><span class="chip"></span><span class="nm">surface</span><code>#11181f</code></button><button type="button" class="sw" data-copy="#181f26" style="--c:#181f26" aria-label="Copy raised #181f26"><span class="chip"></span><span class="nm">raised</span><code>#181f26</code></button><button type="button" class="sw" data-copy="#22292f" style="--c:#22292f" aria-label="Copy border #22292f"><span class="chip"></span><span class="nm">border</span><code>#22292f</code></button><button type="button" class="sw" data-copy="#192d41" style="--c:#192d41" aria-label="Copy selection #192d41"><span class="chip"></span><span class="nm">selection</span><code>#192d41</code></button><button type="button" class="sw" data-copy="#d1d8df" style="--c:#d1d8df" aria-label="Copy fg #d1d8df"><span class="chip"></span><span class="nm">fg</span><code>#d1d8df</code></button><button type="button" class="sw" data-copy="#87929c" style="--c:#87929c" aria-label="Copy muted #87929c"><span class="chip"></span><span class="nm">muted</span><code>#87929c</code></button><button type="button" class="sw" data-copy="#6e838f" style="--c:#6e838f" aria-label="Copy comment #6e838f"><span class="chip"></span><span class="nm">comment</span><code>#6e838f</code></button></div></div>
+<div data-for="skumring">
+    <div class="ramp" role="list" aria-label="Neutral ramp"><button type="button" role="listitem" data-copy="#1a232b" style="background:#1a232b" aria-label="Copy neutral 0 #1a232b" title="n0 #1a232b"></button><button type="button" role="listitem" data-copy="#1d262d" style="background:#1d262d" aria-label="Copy neutral 1 #1d262d" title="n1 #1d262d"></button><button type="button" role="listitem" data-copy="#232c33" style="background:#232c33" aria-label="Copy neutral 2 #232c33" title="n2 #232c33"></button><button type="button" role="listitem" data-copy="#2c343c" style="background:#2c343c" aria-label="Copy neutral 3 #2c343c" title="n3 #2c343c"></button><button type="button" role="listitem" data-copy="#373f46" style="background:#373f46" aria-label="Copy neutral 4 #373f46" title="n4 #373f46"></button><button type="button" role="listitem" data-copy="#444c53" style="background:#444c53" aria-label="Copy neutral 5 #444c53" title="n5 #444c53"></button><button type="button" role="listitem" data-copy="#535b62" style="background:#535b62" aria-label="Copy neutral 6 #535b62" title="n6 #535b62"></button><button type="button" role="listitem" data-copy="#646c73" style="background:#646c73" aria-label="Copy neutral 7 #646c73" title="n7 #646c73"></button><button type="button" role="listitem" data-copy="#787f86" style="background:#787f86" aria-label="Copy neutral 8 #787f86" title="n8 #787f86"></button><button type="button" role="listitem" data-copy="#8d949b" style="background:#8d949b" aria-label="Copy neutral 9 #8d949b" title="n9 #8d949b"></button><button type="button" role="listitem" data-copy="#a5acb2" style="background:#a5acb2" aria-label="Copy neutral 10 #a5acb2" title="n10 #a5acb2"></button><button type="button" role="listitem" data-copy="#bec5cb" style="background:#bec5cb" aria-label="Copy neutral 11 #bec5cb" title="n11 #bec5cb"></button></div>
+    <div class="grid8"><button type="button" class="sw" data-copy="#ac8cb9" style="--c:#ac8cb9" aria-label="Copy keyword #ac8cb9"><span class="chip"></span><span class="nm">keyword</span><code>#ac8cb9</code><span class="sub2">keywords, tags</span></button><button type="button" class="sw" data-copy="#3dc2a0" style="--c:#3dc2a0" aria-label="Copy string #3dc2a0"><span class="chip"></span><span class="nm">string</span><code>#3dc2a0</code><span class="sub2">strings, success</span></button><button type="button" class="sw" data-copy="#5d9de5" style="--c:#5d9de5" aria-label="Copy function #5d9de5"><span class="chip"></span><span class="nm">function</span><code>#5d9de5</code><span class="sub2">functions, links, info</span></button><button type="button" class="sw" data-copy="#46cef3" style="--c:#46cef3" aria-label="Copy type #46cef3"><span class="chip"></span><span class="nm">type</span><code>#46cef3</code><span class="sub2">types, classes</span></button><button type="button" class="sw" data-copy="#c88c3b" style="--c:#c88c3b" aria-label="Copy number #c88c3b"><span class="chip"></span><span class="nm">number</span><code>#c88c3b</code><span class="sub2">numbers</span></button><button type="button" class="sw" data-copy="#d0ba53" style="--c:#d0ba53" aria-label="Copy constant #d0ba53"><span class="chip"></span><span class="nm">constant</span><code>#d0ba53</code><span class="sub2">constants, warnings</span></button><button type="button" class="sw" data-copy="#f49bd0" style="--c:#f49bd0" aria-label="Copy special #f49bd0"><span class="chip"></span><span class="nm">special</span><code>#f49bd0</code><span class="sub2">regex, escapes, decorators</span></button><button type="button" class="sw" data-copy="#f18c7e" style="--c:#f18c7e" aria-label="Copy error #f18c7e"><span class="chip"></span><span class="nm">error</span><code>#f18c7e</code><span class="sub2">errors</span></button></div>
+    <div class="grid8 neutrals"><button type="button" class="sw" data-copy="#1a232b" style="--c:#1a232b" aria-label="Copy bg #1a232b"><span class="chip"></span><span class="nm">bg</span><code>#1a232b</code></button><button type="button" class="sw" data-copy="#1d262d" style="--c:#1d262d" aria-label="Copy surface #1d262d"><span class="chip"></span><span class="nm">surface</span><code>#1d262d</code></button><button type="button" class="sw" data-copy="#232c33" style="--c:#232c33" aria-label="Copy raised #232c33"><span class="chip"></span><span class="nm">raised</span><code>#232c33</code></button><button type="button" class="sw" data-copy="#2c343c" style="--c:#2c343c" aria-label="Copy border #2c343c"><span class="chip"></span><span class="nm">border</span><code>#2c343c</code></button><button type="button" class="sw" data-copy="#283c51" style="--c:#283c51" aria-label="Copy selection #283c51"><span class="chip"></span><span class="nm">selection</span><code>#283c51</code></button><button type="button" class="sw" data-copy="#bec5cb" style="--c:#bec5cb" aria-label="Copy fg #bec5cb"><span class="chip"></span><span class="nm">fg</span><code>#bec5cb</code></button><button type="button" class="sw" data-copy="#85919b" style="--c:#85919b" aria-label="Copy muted #85919b"><span class="chip"></span><span class="nm">muted</span><code>#85919b</code></button><button type="button" class="sw" data-copy="#687d89" style="--c:#687d89" aria-label="Copy comment #687d89"><span class="chip"></span><span class="nm">comment</span><code>#687d89</code></button></div></div>
+<div data-for="dag">
+    <div class="ramp" role="list" aria-label="Neutral ramp"><button type="button" role="listitem" data-copy="#f0f8ff" style="background:#f0f8ff" aria-label="Copy neutral 0 #f0f8ff" title="n0 #f0f8ff"></button><button type="button" role="listitem" data-copy="#ecf3f9" style="background:#ecf3f9" aria-label="Copy neutral 1 #ecf3f9" title="n1 #ecf3f9"></button><button type="button" role="listitem" data-copy="#e2e9ef" style="background:#e2e9ef" aria-label="Copy neutral 2 #e2e9ef" title="n2 #e2e9ef"></button><button type="button" role="listitem" data-copy="#d5dce2" style="background:#d5dce2" aria-label="Copy neutral 3 #d5dce2" title="n3 #d5dce2"></button><button type="button" role="listitem" data-copy="#c6ccd1" style="background:#c6ccd1" aria-label="Copy neutral 4 #c6ccd1" title="n4 #c6ccd1"></button><button type="button" role="listitem" data-copy="#b4b9be" style="background:#b4b9be" aria-label="Copy neutral 5 #b4b9be" title="n5 #b4b9be"></button><button type="button" role="listitem" data-copy="#a0a5aa" style="background:#a0a5aa" aria-label="Copy neutral 6 #a0a5aa" title="n6 #a0a5aa"></button><button type="button" role="listitem" data-copy="#8a8f93" style="background:#8a8f93" aria-label="Copy neutral 7 #8a8f93" title="n7 #8a8f93"></button><button type="button" role="listitem" data-copy="#73787c" style="background:#73787c" aria-label="Copy neutral 8 #73787c" title="n8 #73787c"></button><button type="button" role="listitem" data-copy="#5c6063" style="background:#5c6063" aria-label="Copy neutral 9 #5c6063" title="n9 #5c6063"></button><button type="button" role="listitem" data-copy="#43474a" style="background:#43474a" aria-label="Copy neutral 10 #43474a" title="n10 #43474a"></button><button type="button" role="listitem" data-copy="#2b2e31" style="background:#2b2e31" aria-label="Copy neutral 11 #2b2e31" title="n11 #2b2e31"></button></div>
+    <div class="grid8"><button type="button" class="sw" data-copy="#683f9f" style="--c:#683f9f" aria-label="Copy keyword #683f9f"><span class="chip"></span><span class="nm">keyword</span><code>#683f9f</code><span class="sub2">keywords, tags</span></button><button type="button" class="sw" data-copy="#477d3e" style="--c:#477d3e" aria-label="Copy string #477d3e"><span class="chip"></span><span class="nm">string</span><code>#477d3e</code><span class="sub2">strings, success</span></button><button type="button" class="sw" data-copy="#0a73cb" style="--c:#0a73cb" aria-label="Copy function #0a73cb"><span class="chip"></span><span class="nm">function</span><code>#0a73cb</code><span class="sub2">functions, links, info</span></button><button type="button" class="sw" data-copy="#076767" style="--c:#076767" aria-label="Copy type #076767"><span class="chip"></span><span class="nm">type</span><code>#076767</code><span class="sub2">types, classes</span></button><button type="button" class="sw" data-copy="#b75001" style="--c:#b75001" aria-label="Copy number #b75001"><span class="chip"></span><span class="nm">number</span><code>#b75001</code><span class="sub2">numbers</span></button><button type="button" class="sw" data-copy="#6c4e00" style="--c:#6c4e00" aria-label="Copy constant #6c4e00"><span class="chip"></span><span class="nm">constant</span><code>#6c4e00</code><span class="sub2">constants, warnings</span></button><button type="button" class="sw" data-copy="#935891" style="--c:#935891" aria-label="Copy special #935891"><span class="chip"></span><span class="nm">special</span><code>#935891</code><span class="sub2">regex, escapes, decorators</span></button><button type="button" class="sw" data-copy="#8f3e48" style="--c:#8f3e48" aria-label="Copy error #8f3e48"><span class="chip"></span><span class="nm">error</span><code>#8f3e48</code><span class="sub2">errors</span></button></div>
+    <div class="grid8 neutrals"><button type="button" class="sw" data-copy="#f0f8ff" style="--c:#f0f8ff" aria-label="Copy bg #f0f8ff"><span class="chip"></span><span class="nm">bg</span><code>#f0f8ff</code></button><button type="button" class="sw" data-copy="#ecf3f9" style="--c:#ecf3f9" aria-label="Copy surface #ecf3f9"><span class="chip"></span><span class="nm">surface</span><code>#ecf3f9</code></button><button type="button" class="sw" data-copy="#e2e9ef" style="--c:#e2e9ef" aria-label="Copy raised #e2e9ef"><span class="chip"></span><span class="nm">raised</span><code>#e2e9ef</code></button><button type="button" class="sw" data-copy="#d5dce2" style="--c:#d5dce2" aria-label="Copy border #d5dce2"><span class="chip"></span><span class="nm">border</span><code>#d5dce2</code></button><button type="button" class="sw" data-copy="#c0d9f3" style="--c:#c0d9f3" aria-label="Copy selection #c0d9f3"><span class="chip"></span><span class="nm">selection</span><code>#c0d9f3</code></button><button type="button" class="sw" data-copy="#292f34" style="--c:#292f34" aria-label="Copy fg #292f34"><span class="chip"></span><span class="nm">fg</span><code>#292f34</code></button><button type="button" class="sw" data-copy="#58626c" style="--c:#58626c" aria-label="Copy muted #58626c"><span class="chip"></span><span class="nm">muted</span><code>#58626c</code></button><button type="button" class="sw" data-copy="#5d727d" style="--c:#5d727d" aria-label="Copy comment #5d727d"><span class="chip"></span><span class="nm">comment</span><code>#5d727d</code></button></div></div>
+<div data-for="kontrast">
+    <div class="ramp" role="list" aria-label="Neutral ramp"><button type="button" role="listitem" data-copy="#050a0f" style="background:#050a0f" aria-label="Copy neutral 0 #050a0f" title="n0 #050a0f"></button><button type="button" role="listitem" data-copy="#070e13" style="background:#070e13" aria-label="Copy neutral 1 #070e13" title="n1 #070e13"></button><button type="button" role="listitem" data-copy="#0f151b" style="background:#0f151b" aria-label="Copy neutral 2 #0f151b" title="n2 #0f151b"></button><button type="button" role="listitem" data-copy="#1a2126" style="background:#1a2126" aria-label="Copy neutral 3 #1a2126" title="n3 #1a2126"></button><button type="button" role="listitem" data-copy="#292f35" style="background:#292f35" aria-label="Copy neutral 4 #292f35" title="n4 #292f35"></button><button type="button" role="listitem" data-copy="#3b4147" style="background:#3b4147" aria-label="Copy neutral 5 #3b4147" title="n5 #3b4147"></button><button type="button" role="listitem" data-copy="#50565c" style="background:#50565c" aria-label="Copy neutral 6 #50565c" title="n6 #50565c"></button><button type="button" role="listitem" data-copy="#696f74" style="background:#696f74" aria-label="Copy neutral 7 #696f74" title="n7 #696f74"></button><button type="button" role="listitem" data-copy="#858b90" style="background:#858b90" aria-label="Copy neutral 8 #858b90" title="n8 #858b90"></button><button type="button" role="listitem" data-copy="#a4aaaf" style="background:#a4aaaf" aria-label="Copy neutral 9 #a4aaaf" title="n9 #a4aaaf"></button><button type="button" role="listitem" data-copy="#c7cdd2" style="background:#c7cdd2" aria-label="Copy neutral 10 #c7cdd2" title="n10 #c7cdd2"></button><button type="button" role="listitem" data-copy="#edf3f7" style="background:#edf3f7" aria-label="Copy neutral 11 #edf3f7" title="n11 #edf3f7"></button></div>
+    <div class="grid8"><button type="button" class="sw" data-copy="#a7afff" style="--c:#a7afff" aria-label="Copy keyword #a7afff"><span class="chip"></span><span class="nm">keyword</span><code>#a7afff</code><span class="sub2">keywords, tags</span></button><button type="button" class="sw" data-copy="#57cba3" style="--c:#57cba3" aria-label="Copy string #57cba3"><span class="chip"></span><span class="nm">string</span><code>#57cba3</code><span class="sub2">strings, success</span></button><button type="button" class="sw" data-copy="#a8d8ff" style="--c:#a8d8ff" aria-label="Copy function #a8d8ff"><span class="chip"></span><span class="nm">function</span><code>#a8d8ff</code><span class="sub2">functions, links, info</span></button><button type="button" class="sw" data-copy="#1ff5ce" style="--c:#1ff5ce" aria-label="Copy type #1ff5ce"><span class="chip"></span><span class="nm">type</span><code>#1ff5ce</code><span class="sub2">types, classes</span></button><button type="button" class="sw" data-copy="#efbb70" style="--c:#efbb70" aria-label="Copy number #efbb70"><span class="chip"></span><span class="nm">number</span><code>#efbb70</code><span class="sub2">numbers</span></button><button type="button" class="sw" data-copy="#dfde4f" style="--c:#dfde4f" aria-label="Copy constant #dfde4f"><span class="chip"></span><span class="nm">constant</span><code>#dfde4f</code><span class="sub2">constants, warnings</span></button><button type="button" class="sw" data-copy="#e294d5" style="--c:#e294d5" aria-label="Copy special #e294d5"><span class="chip"></span><span class="nm">special</span><code>#e294d5</code><span class="sub2">regex, escapes, decorators</span></button><button type="button" class="sw" data-copy="#fe8f7b" style="--c:#fe8f7b" aria-label="Copy error #fe8f7b"><span class="chip"></span><span class="nm">error</span><code>#fe8f7b</code><span class="sub2">errors</span></button></div>
+    <div class="grid8 neutrals"><button type="button" class="sw" data-copy="#050a0f" style="--c:#050a0f" aria-label="Copy bg #050a0f"><span class="chip"></span><span class="nm">bg</span><code>#050a0f</code></button><button type="button" class="sw" data-copy="#070e13" style="--c:#070e13" aria-label="Copy surface #070e13"><span class="chip"></span><span class="nm">surface</span><code>#070e13</code></button><button type="button" class="sw" data-copy="#0f151b" style="--c:#0f151b" aria-label="Copy raised #0f151b"><span class="chip"></span><span class="nm">raised</span><code>#0f151b</code></button><button type="button" class="sw" data-copy="#1a2126" style="--c:#1a2126" aria-label="Copy border #1a2126"><span class="chip"></span><span class="nm">border</span><code>#1a2126</code></button><button type="button" class="sw" data-copy="#0d2034" style="--c:#0d2034" aria-label="Copy selection #0d2034"><span class="chip"></span><span class="nm">selection</span><code>#0d2034</code></button><button type="button" class="sw" data-copy="#ebf3fa" style="--c:#ebf3fa" aria-label="Copy fg #ebf3fa"><span class="chip"></span><span class="nm">fg</span><code>#ebf3fa</code></button><button type="button" class="sw" data-copy="#a9b5c0" style="--c:#a9b5c0" aria-label="Copy muted #a9b5c0"><span class="chip"></span><span class="nm">muted</span><code>#a9b5c0</code></button><button type="button" class="sw" data-copy="#8aa0ac" style="--c:#8aa0ac" aria-label="Copy comment #8aa0ac"><span class="chip"></span><span class="nm">comment</span><code>#8aa0ac</code></button></div></div></div>
+</section>
+
+<section id="accessibility" aria-labelledby="a-h">
+  <div class="head reveal"><p class="eyebrow">Accessibility</p><h2 id="a-h">Proof, not promises.</h2>
+  <p class="sub">Contrast is measured with WCAG ratios. Colorblind separation uses the Machado simulation and OKLab distance, where about 2 is just noticeable and Kvile enforces 6 or more.</p></div>
+  <div class="two">
+    <div class="card reveal"><h3>Colorblind simulation</h3><p class="mutedp">The same eight accents as seen by different eyes. Each row has to stay distinguishable.</p><div data-for="natt"><div class="cvd">
+    <div class="legend" aria-hidden="true"><span>keyword</span><span>string</span><span>function</span><span>type</span><span>number</span><span>constant</span><span>special</span><span>error</span></div>
+    <div class="cvdrow"><div class="cvdlabel"><b>Normal vision</b><small>closest pair number / constant &middot; &Delta;E 10.6</small></div>
+      <div class="chips" role="img" aria-label="Normal vision simulation of the eight accent colors"><i title="keyword" style="background:#bdb1fe"></i><i title="string" style="background:#85c38f"></i><i title="function" style="background:#57a3f7"></i><i title="type" style="background:#01dfd5"></i><i title="number" style="background:#e29e2c"></i><i title="constant" style="background:#cdc94b"></i><i title="special" style="background:#ca87b4"></i><i title="error" style="background:#eb7b5f"></i></div></div><div class="cvdrow"><div class="cvdlabel"><b>Deuteranopia</b><small>closest pair number / constant &middot; &Delta;E 6.5</small></div>
+      <div class="chips" role="img" aria-label="Deuteranopia simulation of the eight accent colors"><i title="keyword" style="background:#9db9fc"></i><i title="string" style="background:#bab292"></i><i title="function" style="background:#6899f5"></i><i title="type" style="background:#b9c0d7"></i><i title="number" style="background:#c6b230"></i><i title="constant" style="background:#dbc653"></i><i title="special" style="background:#9aa0b2"></i><i title="error" style="background:#b3a45d"></i></div></div><div class="cvdrow"><div class="cvdlabel"><b>Protanopia</b><small>closest pair keyword / function &middot; &Delta;E 6.8</small></div>
+      <div class="chips" role="img" aria-label="Protanopia simulation of the eight accent colors"><i title="keyword" style="background:#9dbcff"></i><i title="string" style="background:#c4b98c"></i><i title="function" style="background:#7ea8fb"></i><i title="type" style="background:#d1d2d5"></i><i title="number" style="background:#b6a114"></i><i title="constant" style="background:#d9c13b"></i><i title="special" style="background:#8996b6"></i><i title="error" style="background:#978c5c"></i></div></div><div class="cvdrow"><div class="cvdlabel"><b>Tritanopia</b><small>closest pair number / special &middot; &Delta;E 6.8</small></div>
+      <div class="chips" role="img" aria-label="Tritanopia simulation of the eight accent colors"><i title="keyword" style="background:#afbecd"></i><i title="string" style="background:#7dc0b5"></i><i title="function" style="background:#00b7c1"></i><i title="type" style="background:#00e5dc"></i><i title="number" style="background:#f68c88"></i><i title="constant" style="background:#dbbdaf"></i><i title="special" style="background:#d28897"></i><i title="error" style="background:#ff6774"></i></div></div></div></div>
+<div data-for="skumring"><div class="cvd">
+    <div class="legend" aria-hidden="true"><span>keyword</span><span>string</span><span>function</span><span>type</span><span>number</span><span>constant</span><span>special</span><span>error</span></div>
+    <div class="cvdrow"><div class="cvdlabel"><b>Normal vision</b><small>closest pair number / error &middot; &Delta;E 10.7</small></div>
+      <div class="chips" role="img" aria-label="Normal vision simulation of the eight accent colors"><i title="keyword" style="background:#ac8cb9"></i><i title="string" style="background:#3dc2a0"></i><i title="function" style="background:#5d9de5"></i><i title="type" style="background:#46cef3"></i><i title="number" style="background:#c88c3b"></i><i title="constant" style="background:#d0ba53"></i><i title="special" style="background:#f49bd0"></i><i title="error" style="background:#f18c7e"></i></div></div><div class="cvdrow"><div class="cvdlabel"><b>Deuteranopia</b><small>closest pair type / special &middot; &Delta;E 6.5</small></div>
+      <div class="chips" role="img" aria-label="Deuteranopia simulation of the eight accent colors"><i title="keyword" style="background:#8d98b8"></i><i title="string" style="background:#aaa8a2"></i><i title="function" style="background:#6d94e4"></i><i title="type" style="background:#a0b7f3"></i><i title="number" style="background:#af9e3d"></i><i title="constant" style="background:#d1bd58"></i><i title="special" style="background:#b6bcce"></i><i title="error" style="background:#bcb07c"></i></div></div><div class="cvdrow"><div class="cvdlabel"><b>Protanopia</b><small>closest pair keyword / function &middot; &Delta;E 6.6</small></div>
+      <div class="chips" role="img" aria-label="Protanopia simulation of the eight accent colors"><i title="keyword" style="background:#8695bb"></i><i title="string" style="background:#bcb59e"></i><i title="function" style="background:#7fa1e8"></i><i title="type" style="background:#b7c9f5"></i><i title="number" style="background:#a18f31"></i><i title="constant" style="background:#cbb648"></i><i title="special" style="background:#a0aed2"></i><i title="error" style="background:#a39b7d"></i></div></div><div class="cvdrow"><div class="cvdlabel"><b>Tritanopia</b><small>closest pair string / function &middot; &Delta;E 6.5</small></div>
+      <div class="chips" role="img" aria-label="Tritanopia simulation of the eight accent colors"><i title="keyword" style="background:#ac919c"></i><i title="string" style="background:#00c4b8"></i><i title="function" style="background:#00aeb7"></i><i title="type" style="background:#00dada"></i><i title="number" style="background:#d97d7b"></i><i title="constant" style="background:#dfada4"></i><i title="special" style="background:#ff9bae"></i><i title="error" style="background:#ff7d89"></i></div></div></div></div>
+<div data-for="dag"><div class="cvd">
+    <div class="legend" aria-hidden="true"><span>keyword</span><span>string</span><span>function</span><span>type</span><span>number</span><span>constant</span><span>special</span><span>error</span></div>
+    <div class="cvdrow"><div class="cvdlabel"><b>Normal vision</b><small>closest pair keyword / special &middot; &Delta;E 11.1</small></div>
+      <div class="chips" role="img" aria-label="Normal vision simulation of the eight accent colors"><i title="keyword" style="background:#683f9f"></i><i title="string" style="background:#477d3e"></i><i title="function" style="background:#0a73cb"></i><i title="type" style="background:#076767"></i><i title="number" style="background:#b75001"></i><i title="constant" style="background:#6c4e00"></i><i title="special" style="background:#935891"></i><i title="error" style="background:#8f3e48"></i></div></div><div class="cvdrow"><div class="cvdlabel"><b>Deuteranopia</b><small>closest pair string / number &middot; &Delta;E 6.2</small></div>
+      <div class="chips" role="img" aria-label="Deuteranopia simulation of the eight accent colors"><i title="keyword" style="background:#20549d"></i><i title="string" style="background:#786f42"></i><i title="function" style="background:#1d6ac9"></i><i title="type" style="background:#535868"></i><i title="number" style="background:#877800"></i><i title="constant" style="background:#615605"></i><i title="special" style="background:#64708f"></i><i title="error" style="background:#645e46"></i></div></div><div class="cvdrow"><div class="cvdlabel"><b>Protanopia</b><small>closest pair number / constant &middot; &Delta;E 6.5</small></div>
+      <div class="chips" role="img" aria-label="Protanopia simulation of the eight accent colors"><i title="keyword" style="background:#0854a2"></i><i title="string" style="background:#807439"></i><i title="function" style="background:#447ace"></i><i title="type" style="background:#5f6167"></i><i title="number" style="background:#6e6000"></i><i title="constant" style="background:#5a4e00"></i><i title="special" style="background:#546893"></i><i title="error" style="background:#504e48"></i></div></div><div class="cvdrow"><div class="cvdlabel"><b>Tritanopia</b><small>closest pair string / function &middot; &Delta;E 6.3</small></div>
+      <div class="chips" role="img" aria-label="Tritanopia simulation of the eight accent colors"><i title="keyword" style="background:#5c5369"></i><i title="string" style="background:#427a6e"></i><i title="function" style="background:#008895"></i><i title="type" style="background:#006b67"></i><i title="number" style="background:#ca3744"></i><i title="constant" style="background:#764541"></i><i title="special" style="background:#975d6e"></i><i title="error" style="background:#9b3342"></i></div></div></div></div>
+<div data-for="kontrast"><div class="cvd">
+    <div class="legend" aria-hidden="true"><span>keyword</span><span>string</span><span>function</span><span>type</span><span>number</span><span>constant</span><span>special</span><span>error</span></div>
+    <div class="cvdrow"><div class="cvdlabel"><b>Normal vision</b><small>closest pair number / constant &middot; &Delta;E 10.6</small></div>
+      <div class="chips" role="img" aria-label="Normal vision simulation of the eight accent colors"><i title="keyword" style="background:#a7afff"></i><i title="string" style="background:#57cba3"></i><i title="function" style="background:#a8d8ff"></i><i title="type" style="background:#1ff5ce"></i><i title="number" style="background:#efbb70"></i><i title="constant" style="background:#dfde4f"></i><i title="special" style="background:#e294d5"></i><i title="error" style="background:#fe8f7b"></i></div></div><div class="cvdrow"><div class="cvdlabel"><b>Deuteranopia</b><small>closest pair number / error &middot; &Delta;E 6.3</small></div>
+      <div class="chips" role="img" aria-label="Deuteranopia simulation of the eight accent colors"><i title="keyword" style="background:#91b2fd"></i><i title="string" style="background:#b6b2a6"></i><i title="function" style="background:#bdcefe"></i><i title="type" style="background:#d3d2d1"></i><i title="number" style="background:#dbc972"></i><i title="constant" style="background:#f1da58"></i><i title="special" style="background:#a6b2d3"></i><i title="error" style="background:#c5b779"></i></div></div><div class="cvdrow"><div class="cvdlabel"><b>Protanopia</b><small>closest pair keyword / special &middot; &Delta;E 6.5</small></div>
+      <div class="chips" role="img" aria-label="Protanopia simulation of the eight accent colors"><i title="keyword" style="background:#96b8ff"></i><i title="string" style="background:#c7bea1"></i><i title="function" style="background:#c8d8ff"></i><i title="type" style="background:#ece5cc"></i><i title="number" style="background:#cfbc6a"></i><i title="constant" style="background:#efd53b"></i><i title="special" style="background:#93a7d7"></i><i title="error" style="background:#aa9f79"></i></div></div><div class="cvdrow"><div class="cvdlabel"><b>Tritanopia</b><small>closest pair special / error &middot; &Delta;E 6.7</small></div>
+      <div class="chips" role="img" aria-label="Tritanopia simulation of the eight accent colors"><i title="keyword" style="background:#8fbecc"></i><i title="string" style="background:#17ccc0"></i><i title="function" style="background:#8be1e5"></i><i title="type" style="background:#00f8ea"></i><i title="number" style="background:#ffada9"></i><i title="constant" style="background:#eed0c1"></i><i title="special" style="background:#e998ac"></i><i title="error" style="background:#ff7e8a"></i></div></div></div></div></div>
+    <div class="card reveal"><h3>Contrast report</h3><p class="mutedp">Generated from the build for the selected variant.</p><div data-for="natt"><table class="ctable"><caption class="sr">Contrast of key colors in Kvile Natt</caption><thead><tr><th scope="col">Pair</th><th scope="col">Ratio</th><th scope="col">Target</th><th scope="col"><span class="sr">Result</span></th></tr></thead><tbody><tr><th scope="row">text on background</th><td>12.8:1</td><td>7-13:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">comment on background</th><td>4.65:1</td><td>&gt;= 4.5:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">text on selection</th><td>9.78:1</td><td>&gt;= 4.5:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">keyword on background</th><td>9.55:1</td><td>&gt;= 4.5:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">string on background</th><td>8.95:1</td><td>&gt;= 4.5:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">function on background</th><td>7.01:1</td><td>&gt;= 4.5:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">type on background</th><td>10.98:1</td><td>&gt;= 4.5:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">number on background</th><td>8.03:1</td><td>&gt;= 4.5:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">constant on background</th><td>10.57:1</td><td>&gt;= 4.5:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">special on background</th><td>6.7:1</td><td>&gt;= 4.5:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">error on background</th><td>6.6:1</td><td>&gt;= 4.5:1</td><td class="ok">&#10003; pass</td></tr></tbody></table></div>
+<div data-for="skumring"><table class="ctable"><caption class="sr">Contrast of key colors in Kvile Skumring</caption><thead><tr><th scope="col">Pair</th><th scope="col">Ratio</th><th scope="col">Target</th><th scope="col"><span class="sr">Result</span></th></tr></thead><tbody><tr><th scope="row">text on background</th><td>9.13:1</td><td>5.5-10:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">comment on background</th><td>3.7:1</td><td>&gt;= 3.5:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">text on selection</th><td>6.49:1</td><td>&gt;= 4.5:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">keyword on background</th><td>5.46:1</td><td>&gt;= 4:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">string on background</th><td>7.14:1</td><td>&gt;= 4:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">function on background</th><td>5.62:1</td><td>&gt;= 4:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">type on background</th><td>8.63:1</td><td>&gt;= 4:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">number on background</th><td>5.51:1</td><td>&gt;= 4:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">constant on background</th><td>8.21:1</td><td>&gt;= 4:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">special on background</th><td>7.92:1</td><td>&gt;= 4:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">error on background</th><td>6.67:1</td><td>&gt;= 4:1</td><td class="ok">&#10003; pass</td></tr></tbody></table></div>
+<div data-for="dag"><table class="ctable"><caption class="sr">Contrast of key colors in Kvile Dag</caption><thead><tr><th scope="col">Pair</th><th scope="col">Ratio</th><th scope="col">Target</th><th scope="col"><span class="sr">Result</span></th></tr></thead><tbody><tr><th scope="row">text on background</th><td>12.63:1</td><td>7-14:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">comment on background</th><td>4.7:1</td><td>&gt;= 4.5:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">text on selection</th><td>9.33:1</td><td>&gt;= 4.5:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">keyword on background</th><td>6.99:1</td><td>&gt;= 4.5:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">string on background</th><td>4.58:1</td><td>&gt;= 4.5:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">function on background</th><td>4.52:1</td><td>&gt;= 4.5:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">type on background</th><td>6.22:1</td><td>&gt;= 4.5:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">number on background</th><td>4.7:1</td><td>&gt;= 4.5:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">constant on background</th><td>7.18:1</td><td>&gt;= 4.5:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">special on background</th><td>4.84:1</td><td>&gt;= 4.5:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">error on background</th><td>6.63:1</td><td>&gt;= 4.5:1</td><td class="ok">&#10003; pass</td></tr></tbody></table></div>
+<div data-for="kontrast"><table class="ctable"><caption class="sr">Contrast of key colors in Kvile Kontrast</caption><thead><tr><th scope="col">Pair</th><th scope="col">Ratio</th><th scope="col">Target</th><th scope="col"><span class="sr">Result</span></th></tr></thead><tbody><tr><th scope="row">text on background</th><td>17.73:1</td><td>12-21:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">comment on background</th><td>7.29:1</td><td>&gt;= 7:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">text on selection</th><td>14.71:1</td><td>&gt;= 4.5:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">keyword on background</th><td>9.67:1</td><td>&gt;= 7:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">string on background</th><td>9.91:1</td><td>&gt;= 7:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">function on background</th><td>13.18:1</td><td>&gt;= 7:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">type on background</th><td>14.2:1</td><td>&gt;= 7:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">number on background</th><td>11.37:1</td><td>&gt;= 7:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">constant on background</th><td>13.91:1</td><td>&gt;= 7:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">special on background</th><td>8.92:1</td><td>&gt;= 7:1</td><td class="ok">&#10003; pass</td></tr><tr><th scope="row">error on background</th><td>8.92:1</td><td>&gt;= 7:1</td><td class="ok">&#10003; pass</td></tr></tbody></table></div></div>
+  </div>
+</section>
+
+<section id="install" aria-labelledby="i-h">
+  <div class="head reveal"><p class="eyebrow">Install</p><h2 id="i-h">Two minutes to calmer.</h2>
+  <p class="sub">Everything lives in the repository. Variants are Natt, Skumring, Dag and Kontrast.</p></div>
+  <div class="acc reveal"><details name="install" open><summary>VS Code</summary><div class="cmd"><pre><code>git clone https://github.com/asconix/kvile.git
+cd kvile/ports/vscode
+ln -s &quot;$(pwd)&quot; ~/.vscode/extensions/asconix.kvile-0.1.0</code></pre><button type="button" class="copy-btn" aria-label="Copy VS Code commands">Copy</button></div><p>Reload VS Code, then run &quot;Preferences: Color Theme&quot; and pick a Kvile variant.</p></details><details name="install"><summary>Ghostty</summary><div class="cmd"><pre><code>cp ports/terminal/ghostty/kvile-* ~/.config/ghostty/themes/</code></pre><button type="button" class="copy-btn" aria-label="Copy Ghostty commands">Copy</button></div><p>In your Ghostty config: theme = kvile-natt</p></details><details name="install"><summary>Alacritty</summary><div class="cmd"><pre><code>mkdir -p ~/.config/alacritty/themes
+cp ports/terminal/alacritty/*.toml ~/.config/alacritty/themes/</code></pre><button type="button" class="copy-btn" aria-label="Copy Alacritty commands">Copy</button></div><p>In alacritty.toml: general.import = [&quot;~/.config/alacritty/themes/kvile-natt.toml&quot;]</p></details><details name="install"><summary>kitty</summary><div class="cmd"><pre><code>cp ports/terminal/kitty/*.conf ~/.config/kitty/</code></pre><button type="button" class="copy-btn" aria-label="Copy kitty commands">Copy</button></div><p>In kitty.conf: include kvile-natt.conf</p></details><details name="install"><summary>WezTerm</summary><div class="cmd"><pre><code>mkdir -p ~/.config/wezterm/colors
+cp ports/terminal/wezterm/*.toml ~/.config/wezterm/colors/</code></pre><button type="button" class="copy-btn" aria-label="Copy WezTerm commands">Copy</button></div><p>In wezterm.lua: config.color_scheme = &quot;Kvile Natt&quot;</p></details><details name="install"><summary>iTerm2</summary><div class="cmd"><pre><code>open ports/terminal/iterm2/kvile-natt.itermcolors</code></pre><button type="button" class="copy-btn" aria-label="Copy iTerm2 commands">Copy</button></div><p>Or: Settings &gt; Profiles &gt; Colors &gt; Color Presets &gt; Import.</p></details><details name="install"><summary>Windows Terminal</summary><div class="cmd"><pre><code>ports/terminal/windows-terminal/kvile-schemes.json</code></pre><button type="button" class="copy-btn" aria-label="Copy Windows Terminal commands">Copy</button></div><p>Paste the entries into the schemes array in settings.json, then set colorScheme on your profile.</p></details></div>
+</section>
+
+<section id="wallpapers" aria-labelledby="w-h">
+  <div class="head reveal"><p class="eyebrow">Wallpapers</p><h2 id="w-h">The palette, painted.</h2>
+  <p class="sub">A specimen sheet for each variant: the OKLCH plot of its eight accents, neutral ramp, contrast ladder and colorblind simulation, over a soft aurora. Full resolution PNGs for desktop and phone.</p></div>
+  <div class="reveal"><div data-for="natt"><div class="walls">
+    <figure class="wall land"><img src="wallpapers/thumbs/kvile-natt-desktop.jpg" alt="Abstract aurora wallpaper in Kvile Natt colors, desktop" loading="lazy" width="1280" height="720"><figcaption><span>Desktop &middot; 3840&times;2160</span><a class="btn ghost sm" href="wallpapers/kvile-natt-desktop.png" download>Download</a></figcaption></figure>
+    <figure class="wall tall"><img src="wallpapers/thumbs/kvile-natt-phone.jpg" alt="Abstract aurora wallpaper in Kvile Natt colors, phone" loading="lazy" width="560" height="1212"><figcaption><span>Phone &middot; 1290&times;2796</span><a class="btn ghost sm" href="wallpapers/kvile-natt-phone.png" download>Download</a></figcaption></figure>
+  </div></div>
+<div data-for="skumring"><div class="walls">
+    <figure class="wall land"><img src="wallpapers/thumbs/kvile-skumring-desktop.jpg" alt="Abstract aurora wallpaper in Kvile Skumring colors, desktop" loading="lazy" width="1280" height="720"><figcaption><span>Desktop &middot; 3840&times;2160</span><a class="btn ghost sm" href="wallpapers/kvile-skumring-desktop.png" download>Download</a></figcaption></figure>
+    <figure class="wall tall"><img src="wallpapers/thumbs/kvile-skumring-phone.jpg" alt="Abstract aurora wallpaper in Kvile Skumring colors, phone" loading="lazy" width="560" height="1212"><figcaption><span>Phone &middot; 1290&times;2796</span><a class="btn ghost sm" href="wallpapers/kvile-skumring-phone.png" download>Download</a></figcaption></figure>
+  </div></div>
+<div data-for="dag"><div class="walls">
+    <figure class="wall land"><img src="wallpapers/thumbs/kvile-dag-desktop.jpg" alt="Abstract aurora wallpaper in Kvile Dag colors, desktop" loading="lazy" width="1280" height="720"><figcaption><span>Desktop &middot; 3840&times;2160</span><a class="btn ghost sm" href="wallpapers/kvile-dag-desktop.png" download>Download</a></figcaption></figure>
+    <figure class="wall tall"><img src="wallpapers/thumbs/kvile-dag-phone.jpg" alt="Abstract aurora wallpaper in Kvile Dag colors, phone" loading="lazy" width="560" height="1212"><figcaption><span>Phone &middot; 1290&times;2796</span><a class="btn ghost sm" href="wallpapers/kvile-dag-phone.png" download>Download</a></figcaption></figure>
+  </div></div>
+<div data-for="kontrast"><div class="walls">
+    <figure class="wall land"><img src="wallpapers/thumbs/kvile-kontrast-desktop.jpg" alt="Abstract aurora wallpaper in Kvile Kontrast colors, desktop" loading="lazy" width="1280" height="720"><figcaption><span>Desktop &middot; 3840&times;2160</span><a class="btn ghost sm" href="wallpapers/kvile-kontrast-desktop.png" download>Download</a></figcaption></figure>
+    <figure class="wall tall"><img src="wallpapers/thumbs/kvile-kontrast-phone.jpg" alt="Abstract aurora wallpaper in Kvile Kontrast colors, phone" loading="lazy" width="560" height="1212"><figcaption><span>Phone &middot; 1290&times;2796</span><a class="btn ghost sm" href="wallpapers/kvile-kontrast-phone.png" download>Download</a></figcaption></figure>
+  </div></div></div>
+</section>
+</main>
+<footer>
+  <div><b>Kvile</b> &middot; Norwegian for &ldquo;rest&rdquo; (KVEE-leh)<br>Color that lets your eyes rest.<br><small>&copy; 2026 Christoph Pilka</small></div>
+  <div><a href="https://github.com/asconix/kvile" rel="noopener">GitHub</a> &middot; <a href="#palette">Palette</a> &middot; <a href="#install">Install</a></div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(function(){
+  var COLORS = {"natt":"#0d151b","skumring":"#1a232b","dag":"#f0f8ff","kontrast":"#050a0f"};
+  var NAMES = {"natt":"Kvile Natt","skumring":"Kvile Skumring","dag":"Kvile Dag","kontrast":"Kvile Kontrast"};
+  var STATS = {"natt":{"text":12.8,"comment":4.65},"skumring":{"text":9.13,"comment":3.7},"dag":{"text":12.63,"comment":4.7},"kontrast":{"text":17.73,"comment":7.29}};
+  var root = document.documentElement;
+  var meta = document.querySelector('meta[name="theme-color"]');
+  function setTheme(t, save){
+    if(!COLORS[t]) t = 'natt';
+    root.setAttribute('data-theme', t);
+    if(meta) meta.setAttribute('content', COLORS[t]);
+    var btns = document.querySelectorAll('[data-theme-btn]');
+    for(var i=0;i<btns.length;i++) btns[i].setAttribute('aria-pressed', btns[i].getAttribute('data-theme-btn')===t ? 'true':'false');
+    var sn = document.getElementById('status-name'); if(sn) sn.textContent = NAMES[t];
+    var st = document.querySelector('[data-stat="text"]'); if(st) st.textContent = STATS[t].text;
+    var sc = document.querySelector('[data-stat="comment"]'); if(sc) sc.textContent = STATS[t].comment;
+    if(save){ try{ localStorage.setItem('kvile-theme', t); }catch(e){} }
+  }
+  setTheme(root.getAttribute('data-theme'), false);
+  document.addEventListener('click', function(e){
+    var b = e.target.closest('[data-theme-btn]');
+    if(b){ setTheme(b.getAttribute('data-theme-btn'), true); return; }
+    var c = e.target.closest('[data-copy]');
+    if(c){ copy(c.getAttribute('data-copy'), 'Copied ' + c.getAttribute('data-copy')); return; }
+    var cb = e.target.closest('.copy-btn');
+    if(cb){ var code = cb.parentNode.querySelector('code'); copy(code.textContent, 'Commands copied'); }
+  });
+  var toast = document.getElementById('toast'), timer;
+  function show(msg){ toast.textContent = msg; toast.classList.add('show'); clearTimeout(timer); timer = setTimeout(function(){ toast.classList.remove('show'); }, 1600); }
+  function copy(text, msg){
+    function fallback(){
+      var ta = document.createElement('textarea'); ta.value = text; ta.setAttribute('readonly',''); ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      try{ document.execCommand('copy'); show(msg); }catch(e){ show('Press Ctrl/Cmd+C to copy'); }
+      document.body.removeChild(ta);
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(function(){ show(msg); }, fallback); } else { fallback(); }
+  }
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } }); }, {threshold:.12, rootMargin:'0px 0px -6% 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else { document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); }); }
+  document.querySelectorAll('.card').forEach(function(card){
+    card.addEventListener('pointermove', function(e){ var r = card.getBoundingClientRect(); card.style.setProperty('--mx', (e.clientX - r.left) + 'px'); card.style.setProperty('--my', (e.clientY - r.top) + 'px'); });
+  });
+})();
+</script>
+</body>
+</html>
