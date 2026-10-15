@@ -1,0 +1,122 @@
+[
+ {
+  "app": "xcode",
+  "variant": "dag",
+  "n": 1,
+  "file": "xcode-dag-01",
+  "w": 2200,
+  "h": 1398,
+  "tw": 1000,
+  "th": 636
+ },
+ {
+  "app": "xcode",
+  "variant": "dag",
+  "n": 2,
+  "file": "xcode-dag-02",
+  "w": 2200,
+  "h": 1398,
+  "tw": 1000,
+  "th": 636
+ },
+ {
+  "app": "xcode",
+  "variant": "dag",
+  "n": 3,
+  "file": "xcode-dag-03",
+  "w": 2200,
+  "h": 1398,
+  "tw": 1000,
+  "th": 636
+ },
+ {
+  "app": "xcode",
+  "variant": "kontrast",
+  "n": 1,
+  "file": "xcode-kontrast-01",
+  "w": 2200,
+  "h": 1398,
+  "tw": 1000,
+  "th": 636
+ },
+ {
+  "app": "xcode",
+  "variant": "kontrast",
+  "n": 2,
+  "file": "xcode-kontrast-02",
+  "w": 2200,
+  "h": 1398,
+  "tw": 1000,
+  "th": 636
+ },
+ {
+  "app": "xcode",
+  "variant": "kontrast",
+  "n": 3,
+  "file": "xcode-kontrast-03",
+  "w": 2200,
+  "h": 1398,
+  "tw": 1000,
+  "th": 636
+ },
+ {
+  "app": "xcode",
+  "variant": "natt",
+  "n": 1,
+  "file": "xcode-natt-01",
+  "w": 2200,
+  "h": 1398,
+  "tw": 1000,
+  "th": 636
+ },
+ {
+  "app": "xcode",
+  "variant": "natt",
+  "n": 2,
+  "file": "xcode-natt-02",
+  "w": 2200,
+  "h": 1398,
+  "tw": 1000,
+  "th": 636
+ },
+ {
+  "app": "xcode",
+  "variant": "natt",
+  "n": 3,
+  "file": "xcode-natt-03",
+  "w": 2200,
+  "h": 1398,
+  "tw": 1000,
+  "th": 636
+ },
+ {
+  "app": "xcode",
+  "variant": "skumring",
+  "n": 1,
+  "file": "xcode-skumring-01",
+  "w": 2200,
+  "h": 1398,
+  "tw": 1000,
+  "th": 636
+ },
+ {
+  "app": "xcode",
+  "variant": "skumring",
+  "n": 2,
+  "file": "xcode-skumring-02",
+  "w": 2200,
+  "h": 1398,
+  "tw": 1000,
+  "th": 636
+ },
+ {
+  "app": "xcode",
+  "variant": "skumring",
+  "n": 3,
+  "file": "xcode-skumring-03",
+  "w": 2200,
+  "h": 1398,
+  "tw": 1000,
+  "th": 636
+ }
+]
