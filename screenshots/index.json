@@ -1,5 +1,205 @@
 [
  {
+  "app": "bat",
+  "variant": "dag",
+  "n": 1,
+  "file": "bat-dag-01",
+  "w": 1804,
+  "h": 1257,
+  "tw": 1000,
+  "th": 697
+ },
+ {
+  "app": "bat",
+  "variant": "dag",
+  "n": 2,
+  "file": "bat-dag-02",
+  "w": 1804,
+  "h": 1257,
+  "tw": 1000,
+  "th": 697
+ },
+ {
+  "app": "bat",
+  "variant": "dag",
+  "n": 3,
+  "file": "bat-dag-03",
+  "w": 1804,
+  "h": 1257,
+  "tw": 1000,
+  "th": 697
+ },
+ {
+  "app": "bat",
+  "variant": "kontrast",
+  "n": 1,
+  "file": "bat-kontrast-01",
+  "w": 1804,
+  "h": 1257,
+  "tw": 1000,
+  "th": 697
+ },
+ {
+  "app": "bat",
+  "variant": "kontrast",
+  "n": 2,
+  "file": "bat-kontrast-02",
+  "w": 1804,
+  "h": 1257,
+  "tw": 1000,
+  "th": 697
+ },
+ {
+  "app": "bat",
+  "variant": "kontrast",
+  "n": 3,
+  "file": "bat-kontrast-03",
+  "w": 1804,
+  "h": 1257,
+  "tw": 1000,
+  "th": 697
+ },
+ {
+  "app": "bat",
+  "variant": "natt",
+  "n": 1,
+  "file": "bat-natt-01",
+  "w": 1804,
+  "h": 1257,
+  "tw": 1000,
+  "th": 697
+ },
+ {
+  "app": "bat",
+  "variant": "natt",
+  "n": 2,
+  "file": "bat-natt-02",
+  "w": 1804,
+  "h": 1257,
+  "tw": 1000,
+  "th": 697
+ },
+ {
+  "app": "bat",
+  "variant": "natt",
+  "n": 3,
+  "file": "bat-natt-03",
+  "w": 1804,
+  "h": 1257,
+  "tw": 1000,
+  "th": 697
+ },
+ {
+  "app": "bat",
+  "variant": "skumring",
+  "n": 1,
+  "file": "bat-skumring-01",
+  "w": 1804,
+  "h": 1257,
+  "tw": 1000,
+  "th": 697
+ },
+ {
+  "app": "bat",
+  "variant": "skumring",
+  "n": 2,
+  "file": "bat-skumring-02",
+  "w": 1804,
+  "h": 1257,
+  "tw": 1000,
+  "th": 697
+ },
+ {
+  "app": "bat",
+  "variant": "skumring",
+  "n": 3,
+  "file": "bat-skumring-03",
+  "w": 1804,
+  "h": 1257,
+  "tw": 1000,
+  "th": 697
+ },
+ {
+  "app": "kitty",
+  "variant": "dag",
+  "n": 1,
+  "file": "kitty-dag-01",
+  "w": 1498,
+  "h": 1063,
+  "tw": 1000,
+  "th": 710
+ },
+ {
+  "app": "kitty",
+  "variant": "dag",
+  "n": 2,
+  "file": "kitty-dag-02",
+  "w": 1498,
+  "h": 1063,
+  "tw": 1000,
+  "th": 710
+ },
+ {
+  "app": "kitty",
+  "variant": "kontrast",
+  "n": 1,
+  "file": "kitty-kontrast-01",
+  "w": 1498,
+  "h": 1063,
+  "tw": 1000,
+  "th": 710
+ },
+ {
+  "app": "kitty",
+  "variant": "kontrast",
+  "n": 2,
+  "file": "kitty-kontrast-02",
+  "w": 1498,
+  "h": 1063,
+  "tw": 1000,
+  "th": 710
+ },
+ {
+  "app": "kitty",
+  "variant": "natt",
+  "n": 1,
+  "file": "kitty-natt-01",
+  "w": 1498,
+  "h": 1063,
+  "tw": 1000,
+  "th": 710
+ },
+ {
+  "app": "kitty",
+  "variant": "natt",
+  "n": 2,
+  "file": "kitty-natt-02",
+  "w": 1498,
+  "h": 1063,
+  "tw": 1000,
+  "th": 710
+ },
+ {
+  "app": "kitty",
+  "variant": "skumring",
+  "n": 1,
+  "file": "kitty-skumring-01",
+  "w": 1498,
+  "h": 1063,
+  "tw": 1000,
+  "th": 710
+ },
+ {
+  "app": "kitty",
+  "variant": "skumring",
+  "n": 2,
+  "file": "kitty-skumring-02",
+  "w": 1498,
+  "h": 1063,
+  "tw": 1000,
+  "th": 710
+ },
+ {
   "app": "xcode",
   "variant": "dag",
   "n": 1,
